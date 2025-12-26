@@ -1,127 +1,122 @@
-# D# 🏥 Doctor System - Healthcare Appointment Platform
+# 🏥 Doctor System – Advanced Healthcare Appointment Platform
 
-A robust and scalable healthcare management system built with **Node.js**, **Express**, and **MongoDB**. This project was developed as part of a professional training program with **Huma-volve**. It streamlines the process of booking doctor appointments, managing patient records, and facilitates real-time communication between doctors and patients.
+![Node.js](https://img.shields.io/badge/Node.js-v18+-brightgreen)
+
+![Express](https://img.shields.io/badge/Express-4.x-blue)
+
+![MongoDB](https://img.shields.io/badge/MongoDB-6.x-green)
+
+
+A **scalable and secure healthcare management system** built with **Node.js**, **Express**, and **MongoDB**. Developed during the **Huma-volve professional training program**, this platform simplifies doctor appointment scheduling, patient management, and real-time communication between doctors and patients.
 
 ---
 
-## 🚀 Key Features
+## 🚀 Core Features
 
 ### 🔐 Authentication & Authorization
-- **Multi-role Support**: Separate workflows for Patients and Doctors.
-- **Secure Sign-up/Login**: Using JWT for stateless session management.
-- **Social Auth**: Google Authentication integration.
-- **Verification**: OTP-based email and phone verification.
-- **Account Security**: Password hashing with `bcrypt`, rate limiting, and security headers with `helmet`.
 
-### 📅 Booking & Management
-- **Appointment Scheduling**: Patients can browse doctors and book available slots.
-- **Status Lifecycle**: Manage booking states (pending, confirmed, cancelled).
-- **Doctor Profiles**: Detailed information about specializations and availability.
+* Role-Based Access Control for **Patients** and **Doctors**.
+* JWT-based stateless authentication.
+* Social Authentication (Google OAuth).
+* OTP verification via email & SMS.
+* Password hashing with `bcrypt`, rate limiting, and security headers using `helmet`.
 
-### 💬 Real-time Communication
-- **Instant Messaging**: Integrated **Socket.IO** for real-time chat between doctors and patients.
-- **Message Persistence**: All chats are stored for future reference.
+### 📅 Booking & Appointment Management
+
+* Browse doctors and book available slots.
+* Track appointment status: pending, confirmed, cancelled.
+* Doctor profiles with specializations, availability, and consultation history.
+
+### 💬 Real-Time Communication
+
+* Instant messaging between doctors and patients using **Socket.IO**.
+* Persistent chat storage for auditing and future reference.
 
 ### 🌟 Reviews & Feedback
-- **Rating System**: Patients can leave reviews and ratings for doctors after their appointments.
+
+* Patients can leave reviews and ratings for doctors post-consultation.
+* Feedback is aggregated for analytics and reporting.
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MongoDB with Mongoose ODM
-- **Real-time**: Socket.io
-- **Security**: JWT, Bcrypt, Helmet, Express-rate-limit
-- **Media**: Cloudinary (for profile and medical record uploads)
-- **Communication**: Nodemailer (Email), Twilio (SMS/OTP)
-- **Validation**: Joi (Schema validation)
-- **State Management**: XState
+* **Runtime & Framework**: Node.js, Express.js
+* **Database**: MongoDB with Mongoose ODM
+* **Real-Time**: Socket.IO
+* **Security**: JWT, bcrypt, Helmet, Express-rate-limit
+* **Media**: Cloudinary for profile images & medical records
+* **Communication Services**: Nodemailer (Email), Twilio (SMS/OTP)
+* **Validation**: Joi
+* **State Management**: XState
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-├── DB                  # Database connection and Mongoose schemas
-│   ├── models          # Data models (Doctor, Patient, Booking, Chat, etc.)
-│   └── connect.js      # MongoDB connection logic
-├── modules             # Core application modules (Business logic)
-│   ├── auth            # Login, Signup, OTP, and Social Auth
-│   ├── booking         # Appointment scheduling logic
-│   ├── chats           # Real-time messaging service
-│   ├── review          # Feedback and rating system
+Doctor_System/
+├── DB                  # Database connection & schemas
+│   ├── models          # Doctor, Patient, Booking, Chat, Review, etc.
+│   └── connect.js      # MongoDB connection
+├── modules             # Core application modules
+│   ├── auth            # Authentication & social login
+│   ├── booking         # Appointment scheduling
+│   ├── chats           # Real-time messaging
+│   ├── review          # Ratings & feedback
 │   └── users           # User profile management
-├── middleware          # Custom Express middlewares (Auth, Validation)
-├── utils               # Helper functions (Uploads, Global Error Handling)
-├── index.js            # Entry point of the application
-└── package.json        # Dependencies and scripts
+├── middleware          # Express middlewares (Auth, Validation)
+├── utils               # Helper functions (Uploads, Error Handling)
+├── index.js            # Application entry point
+└── package.json        # Dependencies & scripts
 ```
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Environment Configuration
 
-### Prerequisites
-- Node.js (v18 or higher)
-- MongoDB account (Atlas or Local)
-- Cloudinary, Twilio, and Google Developer accounts (for full functionality)
-
-### Steps
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/DAvidOsAmAA/Doctor_System.git
-   cd Doctor_System
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Environment Configuration**
-   Create a `.env` file in the root directory and add the following:
-   ```env
-   PORT=3000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
-   CLOUDINARY_CLOUD_NAME=your_name
-   CLOUDINARY_API_KEY=your_key
-   CLOUDINARY_API_SECRET=your_secret
-   # Add other keys from .env.example
-   ```
-
-4. **Run the application**
-   ```bash
-   # For development
-   npm run dev
-
-   # For production
-   npm start
-   ```
+| Section                | Key                    | Description                       |
+| ---------------------- | ---------------------- | --------------------------------- |
+| **Server**             | PORT                   | Server listening port             |
+|                        | NODE_ENV               | Development or production mode    |
+| **Database**           | MONGO_URI              | MongoDB connection string         |
+| **JWT**                | ACCESS_TOKEN_KEY       | Key name for access token         |
+|                        | REFRESH_TOKEN_KEY      | Key name for refresh token        |
+|                        | ACCESS_TOKEN_SECRET    | Secret for signing access token   |
+|                        | REFRESH_TOKEN_SECRET   | Secret for signing refresh token  |
+|                        | ACCESS_TOKEN_DURATION  | Expiry duration for access token  |
+|                        | REFRESH_TOKEN_DURATION | Expiry duration for refresh token |
+| **Encryption**         | ENC_SECRET_KEY         | Key for encrypting sensitive data |
+| **Email (Nodemailer)** | APP_EMAIL              | Sender email address              |
+|                        | APP_PASSWORD           | App-specific password             |
+|                        | APPLICATION_NAME       | Name of the application           |
+| **Cloudinary**         | CLOUDINARY_CLOUD_NAME  | Cloudinary cloud name             |
+|                        | CLOUDINARY_API_KEY     | Cloudinary API key                |
+|                        | CLOUDINARY_API_SECRET  | Cloudinary API secret             |
+| **PayPal**             | PAYPAL_CLIENT_ID       | PayPal client ID                  |
+|                        | PAYPAL_CLIENT_SECRET   | PayPal client secret              |
+|                        | PAYPAL_BASE_URL        | PayPal API base URL               |
+|                        | PAYPAL_RETURN_URL      | Success redirect URL              |
+|                        | PAYPAL_CANCEL_URL      | Cancel redirect URL               |
+| **Twilio (SMS OTP)**   | TWILIO_ACCOUNT_SID     | Twilio account SID                |
+|                        | TWILIO_AUTH_TOKEN      | Twilio auth token                 |
+|                        | TWILIO_PHONE_NUMBER    | Twilio phone number               |
+| **Google**             | WEB_CLIENT_ID          | Google OAuth client ID            |
+|                        | GOOGLE_MAPS_API_KEY    | Google Maps API key               |
 
 ---
 
-## 🛡️ Security Features
+## 🤝 Team Members
 
-- **XSS Protection**: Sanitization and Helmet headers.
-- **Rate Limiting**: To prevent brute-force attacks on sensitive endpoints.
-- **CORS**: Configured for secure cross-origin requests.
-- **Data Validation**: Strict schema validation using Joi before processing any request.
+* Mahmoud Zain
+* Hossam Ahmed
+* Mohammed Adel
+* Mostafa Talaat
+* Mohammed Farag
 
 ---
 
 ## 🤝 Contribution
 
-This project was a collaborative effort during the Huma-volve internship. Special thanks to the team for their contributions to building a comprehensive healthcare solution.
-
----
-
-## 📄 License
-
-This project is licensed under the ISC License.
-
-
-# register branch has been added
+This project was developed collaboratively during the **Huma-volve internship**.
+Special thanks to all contributors for building a full-featured healthcare platform.

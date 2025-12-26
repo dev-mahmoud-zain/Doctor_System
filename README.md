@@ -1,11 +1,11 @@
 # 🏥 Doctor System – Advanced Healthcare Appointment Platform
 
 ![Node.js](https://img.shields.io/badge/Node.js-v18+-brightgreen)
-
 ![Express](https://img.shields.io/badge/Express-4.x-blue)
-
 ![MongoDB](https://img.shields.io/badge/MongoDB-6.x-green)
-
+![JWT](https://img.shields.io/badge/JWT-Auth-orange)
+![NodeMailer](https://img.shields.io/badge/NodeMailer-email-green)
+![Socket.io](https://img.shields.io/badge/Socket.io-Realtime-red)
 
 A **scalable and secure healthcare management system** built with **Node.js**, **Express**, and **MongoDB**. Developed during the **Huma-volve professional training program**, this platform simplifies doctor appointment scheduling, patient management, and real-time communication between doctors and patients.
 
@@ -73,36 +73,79 @@ Doctor_System/
 
 ---
 
-## ⚙️ Environment Configuration
+## ⚙️ Installation & Setup
 
-| Section                | Key                    | Description                       |
-| ---------------------- | ---------------------- | --------------------------------- |
-| **Server**             | PORT                   | Server listening port             |
-|                        | NODE_ENV               | Development or production mode    |
-| **Database**           | MONGO_URI              | MongoDB connection string         |
-| **JWT**                | ACCESS_TOKEN_KEY       | Key name for access token         |
-|                        | REFRESH_TOKEN_KEY      | Key name for refresh token        |
-|                        | ACCESS_TOKEN_SECRET    | Secret for signing access token   |
-|                        | REFRESH_TOKEN_SECRET   | Secret for signing refresh token  |
-|                        | ACCESS_TOKEN_DURATION  | Expiry duration for access token  |
-|                        | REFRESH_TOKEN_DURATION | Expiry duration for refresh token |
-| **Encryption**         | ENC_SECRET_KEY         | Key for encrypting sensitive data |
-| **Email (Nodemailer)** | APP_EMAIL              | Sender email address              |
-|                        | APP_PASSWORD           | App-specific password             |
-|                        | APPLICATION_NAME       | Name of the application           |
-| **Cloudinary**         | CLOUDINARY_CLOUD_NAME  | Cloudinary cloud name             |
-|                        | CLOUDINARY_API_KEY     | Cloudinary API key                |
-|                        | CLOUDINARY_API_SECRET  | Cloudinary API secret             |
-| **PayPal**             | PAYPAL_CLIENT_ID       | PayPal client ID                  |
-|                        | PAYPAL_CLIENT_SECRET   | PayPal client secret              |
-|                        | PAYPAL_BASE_URL        | PayPal API base URL               |
-|                        | PAYPAL_RETURN_URL      | Success redirect URL              |
-|                        | PAYPAL_CANCEL_URL      | Cancel redirect URL               |
-| **Twilio (SMS OTP)**   | TWILIO_ACCOUNT_SID     | Twilio account SID                |
-|                        | TWILIO_AUTH_TOKEN      | Twilio auth token                 |
-|                        | TWILIO_PHONE_NUMBER    | Twilio phone number               |
-| **Google**             | WEB_CLIENT_ID          | Google OAuth client ID            |
-|                        | GOOGLE_MAPS_API_KEY    | Google Maps API key               |
+### Prerequisites
+
+* **Node.js** v18+
+* **MongoDB** (Atlas or local)
+* **Cloudinary, Twilio, Google Developer accounts** (for full functionality)
+
+### Steps
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/DAvidOsAmAA/Doctor_System.git
+   cd Doctor_System
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables**
+   Create a `.env` file:
+
+   ```env
+   PORT=3000
+   NODE_ENV=development
+   MONGO_URI=mongodb://localhost:27017/doctor_system
+   ACCESS_TOKEN_KEY=access_token
+   REFRESH_TOKEN_KEY=refresh_token
+   ACCESS_TOKEN_SECRET=your_access_token_secret_here
+   REFRESH_TOKEN_SECRET=your_refresh_token_secret_here
+   ACCESS_TOKEN_DURATION=1h
+   REFRESH_TOKEN_DURATION=7d
+   ENC_SECRET_KEY=your_encryption_secret_key_here
+   APP_EMAIL=your_email@gmail.com
+   APP_PASSWORD=your_app_specific_password
+   APPLICATION_NAME=Doctor_System
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_api_key
+   CLOUDINARY_API_SECRET=your_api_secret
+   PAYPAL_CLIENT_ID=your_paypal_client_id
+   PAYPAL_CLIENT_SECRET=your_paypal_client_secret
+   PAYPAL_BASE_URL=https://api-m.sandbox.paypal.com
+   PAYPAL_RETURN_URL=http://localhost:4200/booking/success
+   PAYPAL_CANCEL_URL=http://localhost:4200/booking/cancel
+   TWILIO_ACCOUNT_SID=your_twilio_sid
+   TWILIO_AUTH_TOKEN=your_twilio_auth_token
+   TWILIO_PHONE_NUMBER=your_twilio_phone_number
+   WEB_CLIENT_ID=your_google_client_id.apps.googleusercontent.com
+   GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+   ```
+
+4. **Run the application**
+
+   ```bash
+   # Development
+   npm run dev
+
+   # Production
+   npm start
+   ```
+
+---
+
+## 🛡️ Security Highlights
+
+* XSS protection and Helmet headers
+* Rate limiting on sensitive endpoints
+* CORS configured for secure cross-origin requests
+* Joi schema validation for strict input control
 
 ---
 
@@ -120,3 +163,5 @@ Doctor_System/
 
 This project was developed collaboratively during the **Huma-volve internship**.
 Special thanks to all contributors for building a full-featured healthcare platform.
+
+---
